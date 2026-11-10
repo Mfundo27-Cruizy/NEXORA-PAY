@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXORA PAY — One platform. Local and global business finance.</title>
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#030818;--panel:#091231;--panel2:#0f1b45;--line:#1d2c63;--txt:#eef3ff;--muted:#93a3cc;--blue:#2f7bff;--cyan:#3fd0ff;--red:#ff3347;--green:#1fe08a;--gold:#ffcf5c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--txt);font:14px/1.5 'DM Sans',system-ui,sans-serif;background:radial-gradient(900px 600px at 0 0,#12307a66,transparent),radial-gradient(800px 600px at 100% 100%,#7a102655,transparent),var(--bg);background-attachment:fixed}
+h1,h2,h3,.logo b,.stat strong,footer b{font-family:Manrope,'DM Sans',system-ui,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.side{position:fixed;inset:0 auto 0 0;width:250px;background:#050d26f2;border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;z-index:5}
+.logo{display:flex;gap:12px;align-items:center;padding:0 6px 22px}
+.logo img{width:54px;height:54px;border-radius:50%;box-shadow:-4px 0 16px #2f7bff77,4px 0 16px #ff334766}
+.logo b{display:flex;align-items:center;gap:6px;font-size:17px;letter-spacing:.5px}
+.pay{background:linear-gradient(#ff4558,#d0152a);border-radius:5px;padding:0 7px;font-style:italic;font-size:14px}
+.logo small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.6px;margin-top:3px}
+.biz{padding:11px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;display:flex;gap:10px;align-items:center;margin-bottom:22px}
+.avatar{width:36px;height:36px;border-radius:10px;background:#0d3a2e;color:var(--green);display:grid;place-items:center;font-weight:700;font-size:12px}
+.biz b{display:block;font-size:13px}.biz small{color:var(--muted);font-size:11px}
+.nav a{display:block;line-height:1.3;color:#aebbe0;text-decoration:none;padding:9px 12px;border-radius:9px;margin-bottom:2px}.nav a small{display:block;color:#7f90bd;font-size:11px}
+.nav a.active{background:linear-gradient(90deg,#2f7bff33,#2f7bff0d);color:#fff;box-shadow:inset 3px 0 var(--cyan)}
+.sidefoot{margin-top:auto;border:1px solid #14604a;background:#06211f;border-radius:12px;padding:14px}
+.sidefoot b{font-size:13px}.sidefoot p{font-size:12px;color:#9cc2b6;margin:6px 0}
+.sidefoot small{color:var(--green);font-size:11px;font-weight:700}
+.link{background:none;border:0;color:var(--muted);font-size:11px;padding:8px 0 0;text-decoration:underline}
+.main{margin-left:250px;padding:28px 36px;max-width:1500px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px}
+.top h1{font-size:26px;margin:6px 0 4px}.top p{margin:0;color:var(--muted)}
+.demo{border:1px solid #6b5a2a;color:var(--gold);border-radius:20px;padding:6px 12px;font-size:11px;white-space:nowrap}
+.hero{position:relative;overflow:hidden;border-radius:18px;padding:30px 34px;min-height:220px;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid var(--line);background:radial-gradient(ellipse at 85% 50%,#1b3f9a88,transparent 55%),radial-gradient(ellipse at 100% 100%,#8a1630aa,transparent 50%),linear-gradient(110deg,#0a1744,#07102c)}
+.hero h2{font-size:32px;line-height:1.15;margin:8px 0;letter-spacing:-.8px}.hero h2 em{font-style:normal;color:var(--green)}
+.hero p{max-width:420px;color:#b4c2e8;margin:0 0 16px}
+.badge{position:relative;flex:none;width:190px;height:190px;border-radius:50%;padding:5px;background:conic-gradient(var(--blue),var(--cyan),#fff,var(--red),var(--blue));animation:spin 14s linear infinite}
+.badge img{width:100%;height:100%;border-radius:50%;display:block;animation:spin 14s linear infinite reverse}
+@keyframes spin{to{transform:rotate(1turn)}}
+.btn{border:0;border-radius:9px;padding:10px 16px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--blue),#1b57d6)}
+.btn.green{background:linear-gradient(135deg,var(--green),#0fa968);color:#03170f}
+.btn.red{background:linear-gradient(135deg,#ff4558,#c9122a)}
+.btn.ghost{background:#13224f;border:1px solid var(--line);color:#cfe0ff}
+.btn.sm{padding:5px 10px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+.stat,.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px}
+.stat{padding:16px}.stat label{font-size:12px;color:var(--muted)}
+.stat strong{display:block;font-size:26px;margin:6px 0 4px}.stat small{color:var(--muted);font-size:12px}
+.money{color:var(--green)}.bar{height:5px;border-radius:5px;background:#12204f;margin:2px 0 6px}.bar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .4s}
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}.right{display:grid;gap:14px;align-content:start}
+.card{padding:18px}.card h3{font-size:17px;margin:4px 0}.card p{color:var(--muted);font-size:12px;margin:2px 0}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tag{font-size:11px;border:1px solid #1b7a5a;color:var(--green);background:#06231e;border-radius:20px;padding:5px 10px;white-space:nowrap}
+.tag.off{border-color:var(--line);color:var(--cyan);background:#0b1a44}
+.chat{height:280px;overflow:auto;border-block:1px solid var(--line);margin:14px 0;padding:6px 0}
+.msg{margin:10px 0;display:flex}.msg.user{justify-content:flex-end}
+.bubble{background:#0f2158;border:1px solid #27408f;border-radius:4px 12px 12px 12px;padding:10px 13px;max-width:92%;line-height:1.6}
+.msg.user .bubble{background:linear-gradient(135deg,#1b57d6,#2f7bff);border-color:#5b95ff;border-radius:12px 4px 12px 12px}
+.dots span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--cyan);animation:b 1s infinite}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes b{50%{opacity:.2}}
+.quick{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.quick button{background:#0d1c47;color:#c4d4ff;border:1px solid var(--line);border-radius:20px;padding:6px 11px;font-size:12px}.quick button:hover{border-color:var(--cyan)}
+.compose{display:flex;gap:8px;background:#050d26;border:1px solid var(--line);border-radius:11px;padding:5px}
+.compose:focus-within{border-color:var(--cyan)}
+.compose input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;padding:8px}
+.rule{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:10px 0}.rule small{display:block;color:var(--muted);font-size:12px}
+.onb{color:var(--green);font-size:12px;font-weight:700}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.fields label{font-size:12px;color:#b6c4ea}
+input,select{background:#050d26;border:1px solid var(--line);border-radius:8px;color:#fff;padding:9px;width:100%}
+.fields input{margin-top:5px}.fields .btn{grid-column:1/-1}
+.supplier{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:9px 0}.supplier small{display:block;color:var(--muted);font-size:12px}
+.add{display:flex;gap:8px;margin:10px 0 6px}
+.sec{margin-top:14px}
+.payform{display:grid;grid-template-columns:1.2fr .8fr 1.3fr auto;gap:8px;margin:12px 0}
+.tools{display:flex;gap:8px;align-items:center}.tools select{width:auto}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}
+th{text-align:left;color:var(--muted);font-size:12px;font-weight:600;padding:10px;border-bottom:1px solid var(--line)}
+td{padding:11px 10px;border-bottom:1px solid #15235a;font-size:13px;vertical-align:top}td small{display:block;color:var(--muted);margin-top:3px}
+.pill{border-radius:20px;padding:4px 9px;font-size:11px;font-weight:700;background:#08301f;color:var(--green)}.pill.pending{background:#3b3010;color:var(--gold)}.pill.rejected{background:#40131b;color:#ff7b8a}
+.audit{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}.audit div{background:#0b173d;border:1px solid var(--line);border-radius:10px;padding:11px;font-size:12px}.audit small{display:block;color:var(--muted);margin-top:5px}
+footer{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;padding:22px 3px}
+.toast{position:fixed;right:20px;bottom:20px;background:#0b2a55;border:1px solid var(--cyan);color:#e6f6ff;padding:11px 16px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:20}.toast.show{opacity:1;transform:none}
+dialog{background:var(--panel);color:var(--txt);border:1px solid var(--line);border-radius:16px;width:min(460px,92vw);padding:22px}dialog::backdrop{background:#000b}
+dialog label{display:block;margin:12px 0 5px;font-size:12px;color:#b6c4ea}dialog .row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.view{display:none}.view.on{display:block}
+.tabs{display:flex;gap:6px;margin:14px 0}.tabs button{background:#0d1c47;border:1px solid var(--line);color:#c4d4ff;border-radius:20px;padding:7px 14px}.tabs button.on{background:var(--blue);border-color:var(--cyan);color:#fff}
+.tab{display:none}.tab.on{display:block}.two{display:grid;grid-template-columns:1.3fr 1fr;gap:6px;margin-top:5px}
+.quote{margin-top:12px;background:#050d26;border:1px solid var(--line);border-radius:10px;padding:4px 12px}.quote .rule:first-child{border-top:0}
+a.rule{color:inherit;text-decoration:none}a.rule:hover{background:#0d1c47}
+.ringwrap{display:flex;gap:18px;align-items:center}.ring{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;flex:none}.ring b{width:86px;height:86px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font:800 26px Manrope}
+.sw{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding:11px 0}.sw small{display:block;color:var(--muted);font-size:12px}.sw input{width:auto;accent-color:var(--green);transform:scale(1.3)}
+.big{font:800 30px Manrope}.tag.bad{border-color:#8a1630;color:#ff7b8a;background:#2a0b14}
+.cat{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}.cat span{width:84px}.cat i{display:block;height:8px;border-radius:8px;background:linear-gradient(90deg,var(--blue),var(--cyan))}.cat u{text-decoration:none;color:var(--muted);margin-left:auto}
+@media(max-width:1050px){.main{padding:22px;margin-left:210px}.side{width:210px}.grid{grid-template-columns:1fr}.badge{width:150px;height:150px}.payform{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.side{position:static;width:auto;padding:14px}.logo{padding:0 0 10px}.biz,.sidefoot{display:none}.nav{display:flex;overflow:auto}.nav a{white-space:nowrap}.main{margin:0;padding:15px}.hero{padding:20px}.badge{position:absolute;right:-40px;top:10px;opacity:.3}.hero h2{font-size:25px}.stats{grid-template-columns:1fr 1fr}.audit,.fields,.payform{grid-template-columns:1fr}footer span:nth-child(2){display:none}.top h1{font-size:21px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<aside class="side"><div class="logo"><img src="assets/logo.png" alt="NEXORA PAY logo"><div><b>NEXORA<span class="pay">PAY</span></b><small>AI FINANCIAL AGENT</small></div></div>
+<div class="biz"><div class="avatar">MF</div><div><b>Moya Fresh Market</b><small>South Africa · ZAR</small></div></div>
+<nav class="nav" id="nav"><a href="#home" data-v="home">NEXORA AI<small>Assistant &amp; overview</small></a><a href="#pay" data-v="pay">NEXORA PAY<small>Local payments</small></a><a href="#global" data-v="global">NEXORA GLOBAL<small>International &amp; FX</small></a><a href="#flow" data-v="flow">NEXORA FLOW<small>Cash-flow forecast</small></a><a href="#business" data-v="business">NEXORA BUSINESS<small>Invoices, expenses, stock</small></a><a href="#guard" data-v="guard">NEXORA GUARD<small>Fraud &amp; controls</small></a></nav>
+<div class="sidefoot"><b>Control stays with you.</b><p>Every payment request is checked against your rules before it can proceed.</p><small>● POLICY ENGINE ACTIVE</small><br><button class="link" id="reset">Reset demo data</button></div></aside>
+<main class="main" id="overview"><div class="view on" id="v-home"><header class="top"><div><div class="eyebrow" id="date"></div><h1 id="greet"></h1><p>Keep supplier payments moving. Keep control of every decision.</p></div><div class="demo">● Demo workspace</div></header><section class="hero"><div><div class="eyebrow">AI-powered payments · Smart controls · Secured records</div><h2>Business payments,<br><em>on your terms.</em></h2><p>An AI financial agent that prepares supplier payments and checks every request against your rules.</p><button class="btn green" id="talk">Talk to your agent</button></div><div class="badge"><img src="assets/logo.png" alt=""></div></section><section class="stats"><article class="stat"><label>Available funds</label><strong id="balance" class="money"></strong><small>Workspace balance · ZAR</small></article>
+<article class="stat"><label>Paid today</label><strong id="spent"></strong><div class="bar"><i id="barfill"></i></div><small>of <span id="caplabel"></span> daily cap</small></article>
+<article class="stat"><label>Needs your approval</label><strong id="pending" style="color:var(--gold)"></strong><small>Owner decision required</small></article>
+<article class="stat"><label>Protected reserve</label><strong id="reserveLabel" style="color:var(--cyan)"></strong><small>Minimum balance kept safe</small></article></section><section class="grid"><article class="card" id="agent"><div class="head"><div><div class="eyebrow">Your financial operations assistant</div><h3>Nexora Agent</h3><p>Give instructions in plain language. Policy checks run separately and cannot be overridden.</p></div><button class="tag" id="mode" title="AI settings"></button></div>
+<div class="chat" id="chat" aria-live="polite"></div>
+<div class="quick" id="quick"><button data-q="Give me a finance summary">Business summary</button><button data-q="Forecast my cash flow">Forecast cash</button><button data-q="Pay GreenLeaf Supplies R750 for weekly stock">Pay R750</button><button data-q="Pay Shenzhen Packaging Co. 1500 CNY for cartons">Pay 1,500 CNY</button><button data-q="Which invoices are due?">Invoices due</button><button data-q="Any fraud alerts?">Fraud alerts</button><button id="clear">Clear chat</button></div>
+<form class="compose" id="form"><input id="prompt" placeholder="Ask Nexora to pay a supplier or explain your finances…" autocomplete="off"><button class="btn">Send</button></form></article><div class="right"><article class="card"><div class="eyebrow">Across the NEXORA platform</div><h3>Today at a glance</h3><div id="tiles"></div></article></div></section><section class="card sec"><div class="eyebrow">Transparency</div><h3>Decision audit trail</h3><div class="audit" id="audit"></div></section></div><div class="view" id="v-pay"><header class="top"><div><div class="eyebrow">NEXORA PAY</div><h1>Local payments, under your rules.</h1><p>Pay South African suppliers with approvals, limits and a protected reserve.</p></div></header><section class="grid"><article class="card" id="rules"><div class="eyebrow">Non-negotiable business rules</div><h3>Spending rules</h3>
+<div class="rule"><div><b>Approved suppliers only</b><small>Unknown recipients are blocked</small></div><span class="onb">ON</span></div><div class="rule"><div><b>Owner approval threshold</b><small>Large payments wait for you</small></div><span class="onb">ON</span></div><div class="rule"><div><b>Protected cash reserve</b><small>A minimum balance stays untouched</small></div><span class="onb">ON</span></div>
+<div class="fields"><label>Auto-approval limit (R)<input id="auto" type="number" min="0"></label><label>Daily spending cap (R)<input id="daily" type="number" min="1"></label><label>Protected reserve (R)<input id="reserve" type="number" min="0"></label><button class="btn ghost" id="saveRules" type="button">Save business rules</button></div>
+<button class="btn red" style="margin-top:12px" id="stop"></button></article><article class="card" id="suppliers"><div class="eyebrow">Controlled recipients</div><div class="head"><h3>Approved suppliers</h3><span class="tag off" id="scount"></span></div><div id="supplierlist"></div><form class="add" id="addform"><input id="newSupplier" placeholder="Add supplier name"><button class="btn green">Add</button></form><p>Owner-approved demo list; not external identity verification.</p></article></section><section class="card sec" id="payments"><div class="head"><div><div class="eyebrow">Transaction decisions</div><h3>Payment activity</h3></div><div class="tools"><select id="filter" aria-label="Filter payments"><option value="all">All</option><option value="pending">Needs approval</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select><button class="btn ghost sm" id="csv">Export CSV</button></div></div>
+<form class="payform" id="payform"><select id="paySup" aria-label="Supplier"></select><input id="payAmt" type="number" min="1" step="any" placeholder="Amount (R)" required><input id="payFor" placeholder="Purpose, e.g. weekly stock"><button class="btn">Request payment</button></form>
+<div class="tablewrap"><table><thead><tr><th>Supplier / reference</th><th>Requested</th><th>Amount</th><th>Policy result</th><th>Guard risk</th><th>Status</th><th>Owner action</th></tr></thead><tbody id="rows"></tbody></table></div></section></div><div class="view" id="v-global"><header class="top"><div><div class="eyebrow">NEXORA GLOBAL</div><h1>Pay anyone, anywhere.</h1><p>Convert currencies and pay international suppliers under the same spending rules.</p></div><div class="demo">Indicative demo rates, not live</div></header><section class="grid"><article class="card"><h3>Send an international payment</h3><form class="fields" id="gform"><label>Supplier<select id="gSup"></select></label><label>Amount to send<div class="two"><input id="gAmt" type="number" min="1" step="any" value="1500" required><select id="gCur"></select></div></label><label style="grid-column:1/-1">Purpose<input id="gFor" placeholder="e.g. packaging order"></label><button class="btn green">Send payment</button></form><div class="quote" id="gQuote"></div><p style="margin-top:10px">In production, cross-border payments run through licensed payment partners and follow exchange-control rules. This demo moves no money.</p></article>
+<div class="right"><article class="card"><h3>Currency converter</h3><div class="fields"><label>Amount<input id="cAmt" type="number" min="0" step="any" value="100"></label><label>From<select id="cFrom"></select></label><label style="grid-column:1/-1">To<select id="cTo"></select></label></div><div class="quote" id="cOut"></div></article></div></section>
+<section class="grid sec"><article class="card"><h3>International suppliers</h3><div id="intlList"></div><form class="payform" id="intlForm"><input id="iName" placeholder="Supplier name" required><input id="iCountry" placeholder="Country"><select id="iCur"></select><button class="btn green">Add</button></form></article><article class="card"><h3>Indicative rates</h3><div id="rateTbl"></div></article></section></div><div class="view" id="v-flow"><header class="top"><div><div class="eyebrow">NEXORA FLOW</div><h1>See your cash before it runs out.</h1><p>A 30-day forecast built from your balance, sales, expenses and unpaid invoices.</p></div></header><section class="grid"><article class="card"><div class="head"><h3>30-day cash forecast</h3><span class="tag" id="fTag"></span></div><div id="fChart"></div><div class="fields"><label>Average daily sales (R)<input id="fSales" type="number" min="0"></label><label>What if sales change by <b id="fAdjL">0%</b><input id="fAdj" type="range" min="-40" max="40" value="0"></label></div></article><div class="right"><article class="card" id="fKpi"></article><article class="card"><h3>Nexora's advice</h3><p id="fAdvice" style="font-size:14px;color:#cfe0ff"></p><button class="btn ghost sm" id="fAsk" style="margin-top:10px">Ask Nexora AI to review</button></article></div></section></div><div class="view" id="v-business"><header class="top"><div><div class="eyebrow">NEXORA BUSINESS</div><h1>Invoices, expenses and stock in one place.</h1><p>Every payment started here goes through the same policy and Guard checks.</p></div></header><div class="tabs" id="tabs"><button data-t="inv" class="on">Invoices</button><button data-t="exp">Expenses</button><button data-t="stk">Inventory</button></div>
+<section class="card tab on" id="t-inv"><form class="payform" id="invForm"><select id="invSup" aria-label="Supplier"></select><input id="invAmt" type="number" min="1" step="any" placeholder="Amount (R)"><input id="invDue" type="date" aria-label="Due date"><button class="btn">Add invoice</button></form><div class="tablewrap"><table><thead><tr><th>Invoice</th><th>Amount</th><th>Due</th><th>Status</th><th>Action</th></tr></thead><tbody id="invRows"></tbody></table></div></section>
+<section class="card tab" id="t-exp"><form class="payform" id="expForm"><select id="eCat" aria-label="Category"></select><input id="eAmt" type="number" min="1" step="any" placeholder="Amount (R)" required><input id="eNote" placeholder="Note"><button class="btn">Record expense</button></form><div id="catBars"></div><div class="tablewrap"><table><thead><tr><th>Expense</th><th>Date</th><th>Amount</th></tr></thead><tbody id="expRows"></tbody></table></div></section>
+<section class="card tab" id="t-stk"><div class="tablewrap"><table><thead><tr><th>Item</th><th>In stock</th><th>Minimum</th><th>Unit cost</th><th>Status</th><th>Action</th></tr></thead><tbody id="stkRows"></tbody></table></div></section></div><div class="view" id="v-guard"><header class="top"><div><div class="eyebrow">NEXORA GUARD</div><h1>Protection that works before money moves.</h1><p>Every payment gets a risk score. Risky ones wait for you.</p></div></header><section class="grid"><article class="card"><div class="ringwrap"><div class="ring" id="gRing"><b id="gNum"></b></div><div><h3 id="gLabel"></h3><p id="gTips"></p></div></div><h3 style="margin-top:18px">Guard controls</h3><div id="gToggles"></div></article><div class="right"><article class="card"><h3>Money protected</h3><div class="big money" id="gSaved"></div><p>Blocked or held for your review</p></article><article class="card"><h3>Recent alerts</h3><div id="gAlerts"></div></article></div></section></div><footer><b>NEXORA<span style="color:var(--red)">PAY</span></b><span>One platform. Local and global business finance.</span><span>Hackathon prototype · Web demo</span></footer></main>
+<dialog id="dlg"><h3 style="margin:0 0 6px">Live AI settings</h3><p style="color:var(--muted);margin:0">Paste an Anthropic API key to turn on the live Claude agent. It is stored only in this browser and sent only to api.anthropic.com. Without a key, the built-in local engine answers.</p>
+<label for="apikey">API key</label><input id="apikey" type="password" placeholder="sk-ant-…" autocomplete="off"><label for="model">Model</label><input id="model" value="claude-sonnet-5-5">
+<div class="row"><button class="btn green" id="keySave">Save and enable</button><button class="btn ghost" id="keyOff">Remove key</button><button class="btn ghost" id="keyClose">Close</button></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id),LS=localStorage;
+const seedBase=()=>({balance:10000,spent:1170,daily:5000,auto:1000,reserve:2000,active:true,suppliers:['GreenLeaf Supplies','FreshRoute Produce','Metro Packaging'],payments:[{id:'NX-2048',supplier:'GreenLeaf Supplies',amount:750,purpose:'Weekly vegetable stock',status:'APPROVED',reason:'Within automatic limit and supplier is approved.',time:'Today, 14:20'},{id:'NX-2047',supplier:'Metro Packaging',amount:420,purpose:'Packaging materials',status:'CONFIRMED',reason:'Historical demonstration record.',time:'Today, 12:10'}],audit:['Demo workspace initialised · Sample data loaded. No live financial account is connected.']});
+const D=n=>new Date(Date.now()+n*864e5).toISOString().slice(0,10);
+const FX={ZAR:1,USD:17.9,EUR:20.8,GBP:23.7,CNY:2.5,AED:4.87,NGN:0.0115,KES:0.139};
+const quote=(a,c)=>{const zar=a*FX[c],fee=Math.max(50,zar*.012);return{zar,fee,total:zar+fee}};
+const seed=()=>Object.assign(seedBase(),{sales:900,guard:{dup:true,night:true,struct:true,blockIntl:false},
+ suppliers:['GreenLeaf Supplies','FreshRoute Produce','Metro Packaging','Shenzhen Packaging Co.','Lagos Fresh Exports'],
+ intl:[{name:'Shenzhen Packaging Co.',country:'China',cur:'CNY'},{name:'Lagos Fresh Exports',country:'Nigeria',cur:'NGN'}],
+ invoices:[{id:'INV-301',supplier:'FreshRoute Produce',amount:4200,due:D(5),status:'UNPAID'},{id:'INV-302',supplier:'Metro Packaging',amount:6800,due:D(12),status:'UNPAID'},{id:'INV-303',supplier:'GreenLeaf Supplies',amount:3100,due:D(20),status:'UNPAID'}],
+ expenses:[['Rent',6000,-5,'Shop rent'],['Wages',9000,-3,'Staff wages'],['Utilities',1400,-8,'Electricity'],['Stock',5200,-2,'Walk-in purchases'],['Marketing',800,-10,'Flyers'],['Transport',1100,-6,'Deliveries']].map((e,k)=>({id:'EX-'+(k+1),cat:e[0],amount:e[1],date:D(e[2]),note:e[3]})),
+ stock:[{item:'Tomatoes (crate)',qty:12,min:10,cost:180,supplier:'GreenLeaf Supplies'},{item:'Carrier bags (box)',qty:4,min:8,cost:240,supplier:'Metro Packaging'},{item:'Spinach (bunch)',qty:30,min:20,cost:12,supplier:'FreshRoute Produce'},{item:'Cartons (pack)',qty:9,min:6,cost:95,supplier:'Metro Packaging'}]});
+let s;try{s=JSON.parse(LS.getItem('nexoraPayV4'))||seed()}catch{s=seed()}
+let hist=[],busy=false;
+const fmt=n=>'R'+Number(n).toLocaleString('en-ZA',{maximumFractionDigits:2}),esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const key=()=>LS.getItem('nexoraKey')||'',model=()=>LS.getItem('nexoraModel')||'claude-sonnet-5-5';
+const save=()=>LS.setItem('nexoraPayV4',JSON.stringify(s)),log=t=>{s.audit.unshift(t);s.audit=s.audit.slice(0,9)};
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2800)}
+const pend=()=>s.payments.filter(p=>p.status==='PENDING APPROVAL');
+const findSup=n=>{n=String(n||'').trim().toLowerCase();return s.suppliers.find(x=>x.toLowerCase()===n)||(n.length>3?s.suppliers.find(x=>x.toLowerCase().includes(n)||n.includes(x.toLowerCase())):null)};
+
+/* ---- Policy engine + Guard: the only code that can move demo funds ---- */
+const openInv=()=>s.invoices.filter(i=>i.status!=='PAID'),expDaily=()=>s.expenses.filter(e=>Date.now()-new Date(e.date)<30*864e5).reduce((a,e)=>a+e.amount,0)/30;
+function risk(sup,amt,x){const g=s.guard,hr=new Date().getHours(),past=s.payments.filter(p=>p.supplier===sup&&p.status!=='REJECTED');let sc=0,why=[];
+ if(g.night&&(hr>=22||hr<5)){sc+=50;why.push('outside business hours')}
+ if(g.dup&&past.some(p=>p.amount===amt&&Date.now()-(p.ts||0)<864e5)){sc+=50;why.push('possible duplicate of a payment in the last 24 hours')}
+ if(past.length){const avg=past.reduce((a,p)=>a+p.amount,0)/past.length;if(amt>avg*3){sc+=40;why.push(`${(amt/avg).toFixed(1)}× this supplier's usual amount`)}}else{sc+=15;why.push('first payment to this supplier')}
+ if(g.struct&&amt<=s.auto&&amt>=s.auto*.9){sc+=30;why.push('just under your auto-approval limit')}
+ if(x.intl){sc+=10;why.push('cross-border')}
+ return{score:Math.min(100,sc),why}}
+function fulfil(p){if(p.inv){const i=s.invoices.find(v=>v.id===p.inv);if(i)i.status='PAID'}if(p.stock){const t=s.stock.find(v=>v.item===p.stock.item);if(t)t.qty+=p.stock.qty}}
+function requestPayment(name,amount,purpose,x){x=x||{};amount=Math.round(Number(amount)*100)/100;
+ if(!(amount>0))return{id:'—',status:'REJECTED',reason:'Amount must be greater than zero.',supplier:name,amount:0};
+ const sup=findSup(name),supplier=sup||String(name||'Unknown Vendor').trim(),isI=sup&&s.intl.some(i=>i.name===sup),rk=risk(supplier,amount,x);let status='REJECTED',reason='';
+ if(!s.active)reason='Agent is paused. Resume it before requesting a payment.';
+ else if(!sup)reason='Recipient is not on the approved supplier list.';
+ else if(x.intl&&!isI)reason='Recipient is not set up as an international supplier.';
+ else if(x.intl&&s.guard.blockIntl)reason='Cross-border payments are switched off in NEXORA GUARD.';
+ else if(amount>s.balance)reason='Requested amount exceeds available demo funds.';
+ else if(s.spent+amount>s.daily)reason='This request would exceed the daily spending cap.';
+ else if(s.balance-amount<s.reserve)reason=`This request would breach your protected reserve of ${fmt(s.reserve)}.`;
+ else if(amount>s.auto){status='PENDING APPROVAL';reason=`Amount exceeds automatic approval limit of ${fmt(s.auto)}. Owner approval is required.`}
+ else if(rk.score>=50){status='PENDING APPROVAL';reason='NEXORA GUARD held this for review: '+rk.why.join('; ')+'.'}
+ else{status='APPROVED';reason='Approved supplier, available funds, policy and Guard checks passed.'}
+ const p={id:'NX-'+Math.floor(10000+Math.random()*89999),supplier,amount,purpose:purpose||'Supplier payment',status,reason,risk:rk.score,why:rk.why,ts:Date.now(),time:'Today, '+new Date().toLocaleTimeString('en-ZA',{hour:'2-digit',minute:'2-digit'})};Object.assign(p,x);
+ if(status==='APPROVED'){s.balance-=amount;s.spent+=amount;fulfil(p)}
+ if(status==='PENDING APPROVAL'&&p.inv){const i=s.invoices.find(v=>v.id===p.inv);if(i)i.status='AWAITING APPROVAL'}
+ s.payments.unshift(p);log(`Payment ${status.toLowerCase()} · ${supplier} · ${fmt(amount)} · ${reason}`);render();return p}
+function payIntl(name,amt,cur,purpose){cur=String(cur||'').toUpperCase();amt=Number(amt);if(!FX[cur]||cur==='ZAR'||!(amt>0))return{id:'—',status:'REJECTED',reason:'Choose a supported foreign currency and a valid amount.',supplier:name,amount:0};
+ const q=quote(amt,cur);return requestPayment(name,q.total,purpose||'International supplier payment',{intl:true,cur,famt:amt,fee:Math.round(q.fee*100)/100,rate:FX[cur]})}
+function decide(id,yes){const p=s.payments.find(x=>x.id===id);if(!p||p.status!=='PENDING APPROVAL')return;const i=p.inv&&s.invoices.find(v=>v.id===p.inv);
+ if(yes){if(!s.active||p.amount>s.balance||s.balance-p.amount<s.reserve||s.spent+p.amount>s.daily){toast('Approval blocked by current policy checks.');return}
+ s.balance-=p.amount;s.spent+=p.amount;p.status='APPROVED';p.reason='Approved by business owner; policy checks repeated.';fulfil(p);log(`Owner approved ${p.id} · ${fmt(p.amount)}.`);toast('Payment approved.')}
+ else{p.status='REJECTED';p.reason='Rejected by business owner. No funds were moved.';if(i)i.status='UNPAID';log(`Owner rejected ${p.id}.`);toast('Payment rejected.')}render()}
+const riskPill=p=>p.risk==null?'—':`<span class="pill ${p.risk>=50?'rejected':p.risk>=25?'pending':''}">${p.risk>=50?'High':p.risk>=25?'Medium':'Low'}</span>`+(p.why&&p.why.length?`<small>${esc(p.why.join('; '))}</small>`:'');
+
+/* ---- Rendering ---- */
+function renderPay(){
+ $('balance').textContent=fmt(s.balance);$('spent').textContent=fmt(s.spent);$('caplabel').textContent=fmt(s.daily);$('barfill').style.width=Math.min(100,s.spent/s.daily*100)+'%';
+ $('pending').textContent=pend().length;$('reserveLabel').textContent=fmt(s.reserve);
+ if(document.activeElement.tagName!=='INPUT'){$('auto').value=s.auto;$('daily').value=s.daily;$('reserve').value=s.reserve}
+ $('scount').textContent=s.suppliers.length+' listed';$('stop').textContent=s.active?'Emergency stop':'Resume agent';
+ $('mode').textContent=key()?'● Live AI · '+model():'● Local engine · add key for live AI';$('mode').className='tag'+(key()?'':' off');
+ $('supplierlist').innerHTML=s.suppliers.map((n,i)=>`<div class="supplier"><div><b>${esc(n)}</b><small>Owner-approved · ${(s.intl.find(x=>x.name===n)||{}).cur?'International · '+s.intl.find(x=>x.name===n).cur:'Local'}</small></div><button class="btn ghost sm" onclick="removeSupplier(${i})">Remove</button></div>`).join('')||'<p>No suppliers yet. Add one to allow payments.</p>';
+ const cur=$('paySup').value;$('paySup').innerHTML=s.suppliers.map(n=>`<option>${esc(n)}</option>`).join('')||'<option value="">No suppliers</option>';if(cur)$('paySup').value=cur;
+ const f=$('filter').value,list=s.payments.filter(p=>f==='all'||(f==='pending'&&p.status==='PENDING APPROVAL')||(f==='approved'&&/APPROVED|CONFIRMED/.test(p.status))||(f==='rejected'&&p.status==='REJECTED'));
+ $('rows').innerHTML=list.map(p=>`<tr><td>${esc(p.supplier)}<small>${esc(p.purpose)} · ${p.id}</small></td><td>${esc(p.time)}</td><td><b>${fmt(p.amount)}</b>${p.famt?`<small>${p.famt.toLocaleString('en-ZA')} ${p.cur} + ${fmt(p.fee)} fee</small>`:''}</td><td>${esc(p.reason)}</td><td>${riskPill(p)}</td><td><span class="pill ${p.status==='PENDING APPROVAL'?'pending':p.status==='REJECTED'?'rejected':''}">${p.status}</span></td><td>${p.status==='PENDING APPROVAL'?`<button class="btn green sm" onclick="decide('${p.id}',true)">Approve</button> <button class="btn red sm" onclick="decide('${p.id}',false)">Reject</button>`:'—'}</td></tr>`).join('')||'<tr><td colspan="7">No payments match this filter. Ask the agent to prepare one.</td></tr>';
+ $('audit').innerHTML=s.audit.slice(0,6).map(x=>`<div>${esc(x)}<small>Recorded in this browser demo</small></div>`).join('');save()}
+function addMessage(t,who){const d=document.createElement('div');d.className='msg '+(who||'');d.innerHTML=`<div class="bubble">${esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>')}</div>`;$('chat').append(d);$('chat').scrollTop=1e6;return d}
+const welcome=()=>{$('chat').innerHTML='';addMessage("Welcome to Moya Fresh Market's financial workspace. I can prepare supplier payments and explain your business position. Your policy engine, not my judgement, decides what is allowed.\n\nTry: **Pay GreenLeaf Supplies R750 for weekly stock.**")};
+
+/* ---- Module renderers ---- */
+const fill=(id,html)=>{const e=$(id),v=e.value;e.innerHTML=html;if(v)e.value=v},opt=a=>a.map(c=>`<option>${esc(c)}</option>`).join('');
+function fcst(days,adj){const sales=s.sales*(1+adj/100),burn=expDaily(),due={};let b=s.balance,low=null;const pts=[b];
+ openInv().forEach(i=>{const d=Math.max(1,Math.ceil((new Date(i.due)-Date.now())/864e5));due[d]=(due[d]||0)+i.amount});
+ for(let d=1;d<=days;d++){b+=sales-burn-(due[d]||0);pts.push(b);if(low===null&&b<s.reserve)low=d}return{pts,low,burn,sales}}
+function chart(pts,res){const W=640,H=220,P=30,mn=Math.min(...pts,res,0),mx=Math.max(...pts,res)*1.05,x=i=>P+i*(W-2*P)/(pts.length-1),y=v=>H-P-(v-mn)/((mx-mn)||1)*(H-2*P),d=pts.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('');
+ return `<svg viewBox="0 0 ${W} ${H}" style="width:100%" role="img" aria-label="30-day cash forecast"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1fe08a" stop-opacity=".35"/><stop offset="1" stop-color="#1fe08a" stop-opacity="0"/></linearGradient></defs><path d="${d}L${x(pts.length-1)} ${H-P}L${P} ${H-P}Z" fill="url(#fg)"/><line x1="${P}" x2="${W-P}" y1="${y(res)}" y2="${y(res)}" stroke="#ff3347" stroke-dasharray="5 4"/><text x="${W-P}" y="${y(res)-6}" fill="#ff7b8a" font-size="11" text-anchor="end">Reserve ${fmt(res)}</text><path d="${d}" fill="none" stroke="#3fd0ff" stroke-width="2.5"/>`+[0,10,20,30].map(i=>`<text x="${x(i)}" y="${H-8}" fill="#93a3cc" font-size="11" text-anchor="middle">Day ${i}</text>`).join('')+'</svg>'}
+const gScore=()=>{const g=s.guard;return Math.min(100,30+(s.reserve>0?12:0)+(s.auto<=s.daily/2?10:0)+(s.suppliers.length?8:0)+(g.dup?12:0)+(g.night?12:0)+(g.struct?10:0)+(s.active?6:0))};
+const GT=[['dup','Duplicate payment check','Hold repeat payments to one supplier within 24 hours'],['night','Night-time hold','Hold payments between 22:00 and 05:00 for review'],['struct','Near-limit check','Flag payments just under your auto-approval limit'],['blockIntl','Block cross-border payments','Stop all international payments']];
+const flagged=()=>s.payments.filter(p=>(p.risk||0)>=25||(p.reason||'').includes('GUARD'));
+function renderRest(){const f=fcst(30,0),inv7=openInv().filter(i=>new Date(i.due)-Date.now()<7*864e5),lowS=s.stock.filter(x=>x.qty<x.min),gs=gScore();
+ $('tiles').innerHTML=[['flow','Cash outlook (FLOW)',f.low?'Below reserve on day '+f.low:'Healthy for 30 days',f.low?'var(--red)':'var(--green)'],['guard','Guard score',gs+'/100',gs>=85?'var(--green)':'var(--gold)'],['business','Invoices due in 7 days',inv7.length?inv7.length+' · '+fmt(inv7.reduce((a,i)=>a+i.amount,0)):'None','var(--cyan)'],['business','Low-stock items',lowS.length,lowS.length?'var(--gold)':'var(--green)'],['global','International suppliers',s.intl.length,'var(--cyan)']].map(x=>`<a class="rule" href="#${x[0]}"><span>${x[1]}</span><b style="color:${x[3]}">${x[2]}</b></a>`).join('');
+ /* FLOW */
+ const adj=+$('fAdj').value,F=fcst(30,adj),m=Math.min(...F.pts),bills=openInv().filter(i=>new Date(i.due)-Date.now()<=30*864e5).reduce((a,i)=>a+i.amount,0);
+ $('fAdjL').textContent=(adj>0?'+':'')+adj+'%';if(document.activeElement!==$('fSales'))$('fSales').value=s.sales;
+ $('fChart').innerHTML=chart(F.pts,s.reserve);$('fTag').textContent=F.low?'● Reserve at risk · day '+F.low:'● Healthy';$('fTag').className='tag'+(F.low?' bad':'');
+ $('fKpi').innerHTML=`<h3>Key numbers</h3>`+[['Safe to spend now',fmt(Math.max(0,m-s.reserve)),'var(--green)'],['Lowest projected balance',fmt(m),m<s.reserve?'var(--red)':'#fff'],['Daily costs (expenses)',fmt(F.burn),'#fff'],['Invoices due in 30 days',fmt(bills),'var(--gold)']].map(r=>`<div class="rule"><span>${r[0]}</span><b style="color:${r[2]}">${r[1]}</b></div>`).join('');
+ $('fAdvice').textContent=F.low?`Your balance is projected to fall below the ${fmt(s.reserve)} reserve on day ${F.low}. Delay or split the largest invoice, or lift daily sales by about ${fmt(Math.ceil((s.reserve-m)/30))} to stay above it.`:`You stay above your reserve for the next 30 days. About ${fmt(Math.max(0,m-s.reserve))} is safe to spend now.`;
+ /* GLOBAL */
+ fill('gSup',opt(s.intl.map(i=>i.name)));$('intlList').innerHTML=s.intl.map(i=>`<div class="supplier"><div><b>${esc(i.name)}</b><small>${esc(i.country)} · pays in ${i.cur}</small></div><button class="btn ghost sm" onclick="removeSupplier(${s.suppliers.indexOf(i.name)})">Remove</button></div>`).join('')||'<p>No international suppliers yet.</p>';
+ $('rateTbl').innerHTML=Object.keys(FX).filter(c=>c!=='ZAR').map(c=>`<div class="rule"><span>1 ${c}</span><b>${FX[c]} ZAR</b></div>`).join('')+'<p style="margin-top:8px">Transfer fee: 1.2%, minimum R50 (demo).</p>';renderQuote();renderConv();
+ /* BUSINESS */
+ fill('invSup',opt(s.suppliers));
+ $('invRows').innerHTML=[...s.invoices].sort((a,b)=>a.due<b.due?-1:1).map(i=>{const d=Math.ceil((new Date(i.due)-Date.now())/864e5);return `<tr><td>${i.id}<small>${esc(i.supplier)}</small></td><td><b>${fmt(i.amount)}</b></td><td>${i.due}<small>${d<0?-d+' days overdue':d<=0?'due today':'in '+d+' days'}</small></td><td><span class="pill ${i.status==='PAID'?'':(i.status==='UNPAID'&&d>3)?'':'pending'}">${i.status}</span></td><td>${i.status==='UNPAID'?`<button class="btn green sm" onclick="payInv('${i.id}')">Pay now</button>`:'—'}</td></tr>`}).join('')||'<tr><td colspan="5">No invoices yet. Add one above.</td></tr>';
+ const cats={};s.expenses.filter(e=>Date.now()-new Date(e.date)<30*864e5).forEach(e=>cats[e.cat]=(cats[e.cat]||0)+e.amount);const cm=Math.max(1,...Object.values(cats));
+ $('catBars').innerHTML='<p style="margin:12px 0 4px">Last 30 days by category</p>'+Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(c=>`<div class="cat"><span>${esc(c[0])}</span><i style="width:${c[1]/cm*55}%"></i><u>${fmt(c[1])}</u></div>`).join('');
+ $('expRows').innerHTML=s.expenses.slice(0,8).map(e=>`<tr><td>${esc(e.note)}<small>${esc(e.cat)}</small></td><td>${e.date}</td><td><b>${fmt(e.amount)}</b></td></tr>`).join('');
+ $('stkRows').innerHTML=s.stock.map((t,k)=>{const lo=t.qty<t.min;return `<tr><td>${esc(t.item)}<small>${esc(t.supplier)}</small></td><td>${t.qty}</td><td>${t.min}</td><td>${fmt(t.cost)}</td><td><span class="pill ${lo?'pending':''}">${lo?'LOW':'OK'}</span></td><td><button class="btn green sm" onclick="reorder(${k})">Reorder</button> <button class="btn ghost sm" onclick="useStock(${k})">Use 5</button></td></tr>`}).join('');
+ /* GUARD */
+ $('gNum').textContent=gs;$('gRing').style.background=`conic-gradient(${gs>=85?'var(--green)':gs>=65?'var(--cyan)':'var(--gold)'} ${gs*3.6}deg,#12204f 0)`;$('gLabel').textContent=gs>=85?'Strong protection':gs>=65?'Good protection':'Needs attention';
+ const miss=GT.slice(0,3).filter(t=>!s.guard[t[0]]).map(t=>t[1].toLowerCase());$('gTips').textContent=miss.length?'Turn on: '+miss.join(', ')+'.':'All core Guard checks are on.';
+ $('gToggles').innerHTML=GT.map(t=>`<label class="sw"><span><b>${t[1]}</b><small>${t[2]}</small></span><input type="checkbox" ${s.guard[t[0]]?'checked':''} onchange="toggleG('${t[0]}',this.checked)"></label>`).join('');
+ $('gSaved').textContent=fmt(s.payments.filter(p=>p.status==='REJECTED'||p.status==='PENDING APPROVAL').reduce((a,p)=>a+p.amount,0));
+ $('gAlerts').innerHTML=flagged().slice(0,5).map(p=>`<div class="supplier"><div><b>${esc(p.supplier)} · ${fmt(p.amount)}</b><small>${esc((p.why&&p.why.length?p.why.join('; '):p.reason))}</small></div><span class="pill ${p.status==='REJECTED'?'rejected':p.status==='PENDING APPROVAL'?'pending':''}">${p.status}</span></div>`).join('')||'<p>No alerts. Guard is watching every payment.</p>'}
+function toggleG(k,v){s.guard[k]=v;log('Guard control changed · '+GT.find(t=>t[0]===k)[1]+(v?' on.':' off.'));render()}
+function renderQuote(){const a=+$('gAmt').value,c=$('gCur').value;if(!(a>0)){$('gQuote').innerHTML='<div class="rule"><span>Enter an amount to see a quote.</span></div>';return}const q=quote(a,c);
+ $('gQuote').innerHTML=[['Rate',`1 ${c} = ${FX[c]} ZAR`],['Converted',fmt(q.zar)],['Fee (1.2%, min R50)',fmt(q.fee)],['Total from your balance',`<span class="money">${fmt(q.total)}</span>`],['Approval',q.total>s.auto?'Needs your approval':'Within auto-approval limit'],['Estimated delivery','1–2 business days (demo)']].map(r=>`<div class="rule"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}
+function renderConv(){const a=+$('cAmt').value,f=$('cFrom').value,t=$('cTo').value;$('cOut').innerHTML=`<div class="rule"><span>${(a||0).toLocaleString('en-ZA')} ${f} =</span><b class="money">${((a||0)*FX[f]/FX[t]).toLocaleString('en-ZA',{maximumFractionDigits:2})} ${t}</b></div>`}
+function payInv(id){const i=s.invoices.find(v=>v.id===id);if(!i)return;const p=requestPayment(i.supplier,i.amount,'Invoice '+id,{inv:id});toast(p.status==='APPROVED'?'Invoice paid.':p.status==='PENDING APPROVAL'?'Queued for your approval.':'Blocked: '+p.reason)}
+function reorder(k){const t=s.stock[k],q=Math.max(1,t.min*2-t.qty),p=requestPayment(t.supplier,q*t.cost,`Reorder ${q} × ${t.item}`,{stock:{item:t.item,qty:q}});toast(p.status==='APPROVED'?`Reordered ${q} × ${t.item}.`:p.status==='PENDING APPROVAL'?'Reorder queued for your approval.':'Blocked: '+p.reason)}
+function useStock(k){const t=s.stock[k];t.qty=Math.max(0,t.qty-5);log(`Stock used · ${t.item} · now ${t.qty}.`);render()}
+function render(){renderPay();renderRest()}
+
+/* ---- Local fallback agent (no key needed) ---- */
+const parseSup=(m,low)=>s.suppliers.find(n=>low.includes(n.toLowerCase()))||((m.match(/(?:pay|send|transfer)\s+(?:to\s+)?(.+?)\s+(?:r|zar)?\s?\d/i)||[])[1]||'Unknown Vendor').trim();
+function payReply(p){const w=p.famt?`${p.famt.toLocaleString('en-ZA')} ${p.cur} (${fmt(p.amount)} incl. ${fmt(p.fee)} fee)`:fmt(p.amount);return p.status==='REJECTED'?`I blocked the ${w} request to ${p.supplier}. ${p.reason} No funds were moved.`:p.status==='PENDING APPROVAL'?`I've prepared ${w} to ${p.supplier} (${p.id}). ${p.reason} No funds have moved. Approve or reject it under PAY → Payment activity.`:`The ${w} payment to ${p.supplier} (${p.id}) passed every policy and Guard check and is approved. Demo only: no real transfer was made.`}
+function fcText(){const f=fcst(30,0),m=Math.min(...f.pts);return f.low?`Heads up: at ${fmt(f.sales)} daily sales your balance is projected to drop below your ${fmt(s.reserve)} reserve on day ${f.low}, bottoming at ${fmt(m)}. Unpaid invoices total ${fmt(openInv().reduce((a,i)=>a+i.amount,0))}. Open FLOW to test scenarios.`:`Your 30-day forecast stays above the ${fmt(s.reserve)} reserve, with a low of ${fmt(m)}. About ${fmt(Math.max(0,m-s.reserve))} is safe to spend now.`}
+function local(msg){const low=msg.toLowerCase(),has=/\b(pay|send|transfer)\b/.test(low),num=x=>+x.replace(/,/g,''),
+ cv=low.match(/convert\s+(\d[\d,]*(?:\.\d+)?)\s?([a-z]{3})(?:\s+(?:to|into)\s+([a-z]{3}))?/),fm=low.match(/(\d[\d,]*(?:\.\d+)?)\s?(usd|eur|gbp|cny|aed|ngn|kes)\b/),
+ zr=low.match(/\b(?:r|zar)\s?(\d[\d,]*(?:\.\d{1,2})?)/)||low.match(/(\d[\d,]*(?:\.\d{1,2})?)\s?(?:rand|zar)\b/),why=(msg.match(/\bfor\s+(.+)$/i)||[])[1];
+ if(cv){const a=num(cv[1]),f=cv[2].toUpperCase(),t=(cv[3]||'zar').toUpperCase();if(!FX[f]||!FX[t])return 'I can convert between '+Object.keys(FX).join(', ')+'.';return `${a.toLocaleString('en-ZA')} ${f} ≈ ${(a*FX[f]/FX[t]).toLocaleString('en-ZA',{maximumFractionDigits:2})} ${t} at indicative demo rates. International transfers add a 1.2% fee (minimum R50).`}
+ if(has&&fm)return payReply(payIntl(parseSup(msg,low),num(fm[1]),fm[2],why));
+ if(has&&zr)return payReply(requestPayment(parseSup(msg,low),num(zr[1]),why));
+ if(/\b(pending|approval|approve)\b/.test(low)){const q=s.payments.filter(p=>p.status==='PENDING APPROVAL');return q.length?`You have ${q.length} request(s) awaiting approval: `+q.map(p=>`${p.id} · ${p.supplier} · ${fmt(p.amount)}`).join('; ')+'. Decide under PAY → Payment activity.':'Nothing is waiting for your approval right now.'}
+ if(/forecast|cash ?flow|runway|projection/.test(low))return fcText();
+ if(/invoice|bills?|\bdue\b/.test(low)){const q=openInv();return q.length?'Open invoices: '+q.map(i=>`${i.id} ${i.supplier} ${fmt(i.amount)} due ${i.due}`).join('; ')+'. Pay them under BUSINESS → Invoices.':'There are no unpaid invoices.'}
+ if(/stock|inventory|reorder/.test(low)){const l=s.stock.filter(t=>t.qty<t.min);return l.length?'Low stock: '+l.map(t=>`${t.item} (${t.qty} left, minimum ${t.min})`).join('; ')+'. Reorder under BUSINESS → Inventory.':'All stock levels are above their minimums.'}
+ if(/fraud|guard|risk|alert|secur/.test(low)){const f=flagged();return `Guard score is ${gScore()}/100. `+(f.length?`${f.length} payment(s) were flagged, latest: ${f[0].supplier} ${fmt(f[0].amount)} (${(f[0].why&&f[0].why.join('; '))||f[0].reason}).`:'No payments have been flagged.')}
+ if(/\b(summary|overview|balance|finances?|position|report|status|how much)\b/.test(low))return `Moya Fresh Market has ${fmt(s.balance)} in available demo funds. ${fmt(s.spent)} is recorded against your ${fmt(s.daily)} daily cap, ${s.payments.filter(p=>p.status==='PENDING APPROVAL').length} request(s) await approval, and ${fmt(s.reserve)} is protected as reserve. ${fcText()}`;
+ if(/\b(supplier|suppliers|vendors?)\b/.test(low))return 'Approved suppliers: '+(s.suppliers.join(', ')||'none')+'.';
+ return 'I can pay local or international suppliers, convert currency, forecast your cash, list invoices and low stock, and report Guard alerts. Try “Pay GreenLeaf Supplies R750 for weekly stock”.'}
+
+/* ---- Live AI agent (Anthropic Messages API with tool use) ---- */
+const tools=[{name:'prepare_payment',description:"Submit a supplier payment request to the owner's policy engine and Guard. It approves, queues for owner approval, or blocks it. Call this whenever the owner asks to pay someone. For international suppliers pass the foreign currency code.",input_schema:{type:'object',properties:{supplier:{type:'string'},amount:{type:'number',description:'Amount in the given currency'},currency:{type:'string',description:'ISO code, default ZAR. Supported: '+Object.keys(FX).join(', ')},purpose:{type:'string'}},required:['supplier','amount']}},
+{name:'quote_international',description:'Get an indicative demo FX quote with fee for sending money in a foreign currency.',input_schema:{type:'object',properties:{amount:{type:'number'},currency:{type:'string'}},required:['amount','currency']}},
+{name:'get_forecast',description:'Get the 30-day cash-flow forecast summary.',input_schema:{type:'object',properties:{}}}];
+const system=()=>`You are NEXORA AI, the assistant inside NEXORA, an AI financial operations platform for African businesses: NEXORA PAY (local payments), NEXORA GLOBAL (international payments and currency conversion), NEXORA FLOW (cash-flow forecasting), NEXORA BUSINESS (suppliers, invoices, expenses, inventory) and NEXORA GUARD (fraud detection and spending controls). You serve Moya Fresh Market (South Africa, ZAR).
+Rules: you cannot approve payments, change limits, add suppliers or edit Guard; the policy engine and Guard decide and only the owner approves queued payments. When asked to pay someone, always call prepare_payment, and never say a payment succeeded unless the tool status is APPROVED. FX rates are indicative demo rates. This is a demo: no real money moves, so never imply a bank or blockchain transfer happened. Reply in 1-4 short plain sentences with amounts like R750. No markdown headings.
+Live state: balance ${fmt(s.balance)}; paid today ${fmt(s.spent)} of daily cap ${fmt(s.daily)}; auto-approval limit ${fmt(s.auto)}; reserve ${fmt(s.reserve)}; agent ${s.active?'active':'PAUSED'}; guard score ${gScore()}/100; local suppliers: ${s.suppliers.filter(n=>!s.intl.some(i=>i.name===n)).join(', ')||'none'}; international suppliers: ${s.intl.map(i=>i.name+' ('+i.cur+')').join(', ')||'none'}; pending approvals: ${s.payments.filter(p=>p.status==='PENDING APPROVAL').map(p=>`${p.id} ${p.supplier} ${fmt(p.amount)}`).join('; ')||'none'}; unpaid invoices: ${openInv().map(i=>`${i.id} ${i.supplier} ${fmt(i.amount)} due ${i.due}`).join('; ')||'none'}; low stock: ${s.stock.filter(t=>t.qty<t.min).map(t=>t.item).join(', ')||'none'}; recent payments: ${s.payments.slice(0,4).map(p=>`${p.supplier} ${fmt(p.amount)} ${p.status}`).join('; ')}.`;
+function runTool(u){const i=u.input||{},c=String(i.currency||'ZAR').toUpperCase();
+ if(u.name==='prepare_payment'){const p=c==='ZAR'?requestPayment(i.supplier,i.amount,i.purpose):payIntl(i.supplier,i.amount,c,i.purpose);return{payment_id:p.id,status:p.status,reason:p.reason,total_zar:p.amount,fee_zar:p.fee||0,guard_risk:p.risk,balance_now:s.balance,paid_today:s.spent}}
+ if(u.name==='quote_international'){if(!FX[c]||c==='ZAR')return{error:'Unsupported currency'};const q=quote(+i.amount,c);return{rate_zar_per_unit:FX[c],converted_zar:q.zar,fee_zar:q.fee,total_zar:q.total,note:'Indicative demo rates'}}
+ if(u.name==='get_forecast'){const f=fcst(30,0);return{lowest_balance:Math.min(...f.pts),days_until_below_reserve:f.low,daily_sales:f.sales,daily_costs:Math.round(f.burn),unpaid_invoices:openInv().length}}
+ return{error:'Unknown tool'}}
+async function askAI(text){const n=hist.length;hist.push({role:'user',content:text});
+ try{for(let i=0;i<4;i++){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':key(),'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:model(),max_tokens:700,system:system(),tools,messages:hist})});
+  if(!r.ok){const e=await r.json().catch(()=>({}));throw new Error(e.error&&e.error.message||'HTTP '+r.status)}
+  const d=await r.json();hist.push({role:'assistant',content:d.content});
+  const txt=d.content.filter(b=>b.type==='text').map(b=>b.text).join('\n').trim(),uses=d.content.filter(b=>b.type==='tool_use');
+  if(txt)addMessage(txt);if(!uses.length)break;
+  hist.push({role:'user',content:uses.map(u=>({type:'tool_result',tool_use_id:u.id,content:JSON.stringify(runTool(u))}))})}
+ while(hist.length>24){hist.shift();while(hist.length&&!(hist[0].role==='user'&&typeof hist[0].content==='string'))hist.shift()}
+ }catch(e){hist.length=n;throw e}}
+async function send(msg){msg=msg.trim();if(!msg||busy)return;busy=true;addMessage(msg,'user');
+ const t=addMessage('','');t.querySelector('.bubble').innerHTML='<span class="dots"><span></span><span></span><span></span></span>';
+ try{if(key()){try{await askAI(msg)}catch(e){addMessage(`Live AI could not answer (${e.message}). Using the local engine for this reply.`);addMessage(local(msg))}}else{await new Promise(r=>setTimeout(r,350));addMessage(local(msg))}}
+ finally{t.remove();busy=false;render()}}
+
+/* ---- Wiring ---- */
+$('form').addEventListener('submit',e=>{e.preventDefault();const v=$('prompt').value;$('prompt').value='';send(v)});
+$('quick').addEventListener('click',e=>{const b=e.target.closest('button');if(b&&b.dataset.q)send(b.dataset.q)});
+$('clear').onclick=()=>{hist=[];welcome()};$('talk').onclick=()=>{go('home');$('agent').scrollIntoView();$('prompt').focus({preventScroll:true})};
+$('saveRules').onclick=()=>{const a=+$('auto').value,d=+$('daily').value,r=+$('reserve').value;if(![a,d,r].every(Number.isFinite)||a<0||r<0||d<=0||a>d){toast('Enter valid limits. Daily cap must be at least the auto limit.');return}s.auto=a;s.daily=d;s.reserve=r;log(`Spending rules updated · Auto ${fmt(a)}, daily ${fmt(d)}, reserve ${fmt(r)}.`);render();toast('Business rules saved.')};
+$('stop').onclick=()=>{s.active=!s.active;log(s.active?'Agent resumed by owner.':'Emergency stop activated by owner.');render();toast(s.active?'Agent resumed.':'Emergency stop active. New payments are blocked.')};
+function removeSupplier(i){const n=s.suppliers.splice(i,1)[0];s.intl=s.intl.filter(x=>x.name!==n);log(`Supplier removed from allow-list · ${n}.`);render()}
+$('addform').addEventListener('submit',e=>{e.preventDefault();const n=$('newSupplier').value.trim();if(n.length<2||s.suppliers.some(x=>x.toLowerCase()===n.toLowerCase())){toast('Enter a unique supplier name.');return}s.suppliers.push(n);$('newSupplier').value='';log(`Supplier added to demo allow-list · ${n}.`);render();toast(n+' added.')});
+$('payform').addEventListener('submit',e=>{e.preventDefault();if(!$('paySup').value){toast('Add a supplier first.');return}const p=requestPayment($('paySup').value,$('payAmt').value,$('payFor').value.trim());$('payAmt').value='';$('payFor').value='';toast(p.status==='APPROVED'?'Approved: '+fmt(p.amount):p.status==='PENDING APPROVAL'?'Queued for your approval.':'Blocked: '+p.reason)});
+$('filter').onchange=render;
+$('csv').onclick=()=>{const q=v=>'"'+String(v).replace(/"/g,'""')+'"',c=[['ID','Supplier','Purpose','Time','Amount','Status','Reason'].join(',')].concat(s.payments.map(p=>[p.id,p.supplier,p.purpose,p.time,p.amount,p.status,p.reason].map(q).join(',')));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c.join('\n')],{type:'text/csv'}));a.download='nexora-payments.csv';a.click();toast('CSV exported.')};
+$('reset').onclick=()=>{if(confirm('Reset all demo data to the starting state?')){s=seed();hist=[];welcome();render();toast('Demo data reset.')}};
+$('mode').onclick=()=>{$('apikey').value=key();$('model').value=model();$('dlg').showModal()};
+$('keySave').onclick=()=>{const k=$('apikey').value.trim();if(!k){toast('Paste an API key first.');return}LS.setItem('nexoraKey',k);LS.setItem('nexoraModel',$('model').value.trim()||'claude-sonnet-5-5');hist=[];$('dlg').close();render();toast('Live AI enabled.')};
+$('keyOff').onclick=()=>{LS.removeItem('nexoraKey');hist=[];$('dlg').close();render();toast('Key removed. Using local engine.')};$('keyClose').onclick=()=>$('dlg').close();
+const h=new Date().getHours();$('greet').textContent=(h<12?'Good morning':h<18?'Good afternoon':'Good evening')+', business owner.';
+$('date').textContent=new Date().toLocaleDateString('en-ZA',{weekday:'long',day:'2-digit',month:'long',year:'numeric'}).toUpperCase()+' · BUSINESS OVERVIEW';
+const views=['home','pay','global','flow','business','guard'];
+function go(v){if(!views.includes(v))v='home';views.forEach(x=>$('v-'+x).classList.toggle('on',x===v));document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.dataset.v===v));if(location.hash!=='#'+v)history.replaceState(null,'','#'+v);scrollTo(0,0)}
+addEventListener('hashchange',()=>go(location.hash.slice(1)));
+const CUR=Object.keys(FX);$('gCur').innerHTML=opt(CUR.filter(c=>c!=='ZAR'));$('iCur').innerHTML=$('gCur').innerHTML;$('cFrom').innerHTML=$('cTo').innerHTML=opt(CUR);$('cFrom').value='USD';$('cTo').value='ZAR';
+$('eCat').innerHTML=opt(['Rent','Wages','Stock','Utilities','Marketing','Transport','Other']);$('invDue').value=D(14);
+['gAmt','gCur'].forEach(k=>$(k).oninput=renderQuote);['cAmt','cFrom','cTo'].forEach(k=>$(k).oninput=renderConv);
+$('gSup').onchange=()=>{const i=s.intl.find(x=>x.name===$('gSup').value);if(i){$('gCur').value=i.cur;renderQuote()}};
+$('gform').onsubmit=e=>{e.preventDefault();if(!$('gSup').value){toast('Add an international supplier first.');return}const p=payIntl($('gSup').value,$('gAmt').value,$('gCur').value,$('gFor').value.trim());toast(p.status==='APPROVED'?'Sent (demo): '+fmt(p.amount):p.status==='PENDING APPROVAL'?'Queued for your approval.':'Blocked: '+p.reason)};
+$('intlForm').onsubmit=e=>{e.preventDefault();const n=$('iName').value.trim();if(n.length<2||s.suppliers.some(x=>x.toLowerCase()===n.toLowerCase())){toast('Enter a unique supplier name.');return}s.suppliers.push(n);s.intl.push({name:n,country:$('iCountry').value.trim()||'—',cur:$('iCur').value});log(`International supplier added · ${n}.`);e.target.reset();render();toast(n+' added.')};
+$('fSales').oninput=()=>{s.sales=Math.max(0,+$('fSales').value||0);render()};$('fAdj').oninput=renderRest;
+$('fAsk').onclick=()=>{go('home');send('Review my 30-day cash forecast and advise me.')};
+$('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#tabs button').forEach(x=>x.classList.toggle('on',x===b));['inv','exp','stk'].forEach(k=>$('t-'+k).classList.toggle('on',k===b.dataset.t))};
+$('invForm').onsubmit=e=>{e.preventDefault();const a=+$('invAmt').value;if(!$('invSup').value||!(a>0)||!$('invDue').value){toast('Complete supplier, amount and due date.');return}s.invoices.push({id:'INV-'+(301+s.invoices.length),supplier:$('invSup').value,amount:a,due:$('invDue').value,status:'UNPAID'});log(`Invoice added · ${$('invSup').value} · ${fmt(a)}.`);$('invAmt').value='';render();toast('Invoice added.')};
+$('expForm').onsubmit=e=>{e.preventDefault();const a=+$('eAmt').value;if(!(a>0))return;if(a>s.balance){toast('Not enough funds to record this expense.');return}s.expenses.unshift({id:'EX-'+Date.now()%1e5,cat:$('eCat').value,amount:a,date:D(0),note:$('eNote').value.trim()||$('eCat').value});s.balance-=a;log(`Expense recorded · ${$('eCat').value} · ${fmt(a)}.`);$('eAmt').value='';$('eNote').value='';render();toast('Expense recorded.')};
+addEventListener('hashchange',()=>{});go(location.hash.slice(1));welcome();render();
+</script></body></html>
